@@ -8,9 +8,9 @@ import javax.persistence.Embeddable;
 @Getter
 public class Location {
 
-    private String city; //Seoul, Busan..etc..
-    private String gu; //GangNam..etc..
-    private String dong; //SinsaDong..etc..
+    private String city;
+    private String gu;
+    private String dong;
 
     protected Location(){
     }
