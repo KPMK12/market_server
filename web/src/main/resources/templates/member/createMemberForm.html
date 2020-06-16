@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<style>
+    .fieldError {
+        border-color: #bd2130;
+    }
+</style>
+<!-- 나중에 회원가입시 EMAIL UNIQUE 를 위한 style -->
+<body>
+
+<div class="container">
+    <div th:replace="fragments/bodyheader :: bodyheader"/>
+
+    <form role="form" action="/member/signup" th:object="${memberForm}" method="post">
+        <div class="form-group">
+            <label th:for="email">아이디</label>
+            <input type="email" th:field="*{mb_email}" class="form-control" placeholder="hong-gil-dong@naver.com">
+        </div>
+
+        <div class="form-group">
+            <label th:for="password">비밀번호</label>
+            <input type="password" th:field="*{mb_pw}" class="form-control" placeholder="*****">
+        </div>
+
+        <div class="form-group">
+            <label th:for="name">닉네임</label>
+            <input type="text" th:field="*{mb_name}" class="form-control" placeholder="닉네임을 입력하세요">
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label th:for="city">거주시</label>
+            <input type="text" th:field="*{city}" class="form-control" placeholder="예 : 서울시">
+        </div>
+
+        <div class="form-group">
+            <label th:for="street">거주구</label>
+            <input type="text" th:field="*{gu}" class="form-control" placeholder="예) 강남구">
+        </div>
+
+        <div class="form-group">
+            <label th:for="zipcode">거주동</label>
+            <input type="text" th:field="*{dong}" class="form-control" placeholder="예) 삼성동">
+        </div>
+        <button type="submit" class="btn btn-primary">회원가입 하기</button>
+    </form>
+    <br/>
+    <div th:replace="fragments/footer :: footer"/>
+</div> <!-- /container -->
+
+</body>
+</html>
