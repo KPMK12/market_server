@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+
+<body>
+<div class="container">
+
+    <div th:replace="fragments/bodyheader :: bodyheader"/>
+
+    <div class="jumbotron">
+        <h1>CarrotMarket</h1>
+        <p class="lead">로그인 화면 Test</p>
+        <p>
+            <a class="btn btn-lg btn-primary" href="/member/signin">로그인</a>
+            <a class="btn btn-lg btn-primary" href="/member/signup">회원가입</a>
+        </p>
+    </div>
+
+    <div th:replace="fragments/footer :: footer"/>
+
+</div>
+</body>
+</html>
