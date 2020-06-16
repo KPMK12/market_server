@@ -1,8 +1,5 @@
 ---
-name: new feature
-about: new feature
-title: '[]'
-labels: ''
+reviewers: 'pmw9027, khndhkx123'
 assignees: 'pmw9027, khndhkx123'
 
 ---
