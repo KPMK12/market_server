@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 @Slf4j
 @RequiredArgsConstructor
@@ -23,7 +26,7 @@ public class MemberController {
         log.info("SIGNUP : GET");
 
         model.addAttribute("memberForm", new MemberForm());
-        return "member/createMemberForm";
+        return "member/signup";
     }
 
     @PostMapping("/member/signup")
@@ -40,5 +43,35 @@ public class MemberController {
 
         memberService.signup(member);
         return "redirect:/";
+    }
+
+    @GetMapping("/member/signin")
+    public String signin_info(Model model){
+        log.info("SIGNIN : GET");
+        model.addAttribute("memberForm", new MemberForm());
+        return "member/signin";
+    }
+
+    @PostMapping("/member/signin")
+    public String signin(MemberForm form, Model model, HttpServletRequest request){
+        log.info("SIGNIN : POST");
+        Member member = memberService.signin(form.getMb_email(), form.getMb_pw());
+        HttpSession session = request.getSession();
+
+        if(member != null){
+            model.addAttribute("member", member);
+            session.setAttribute("userid",member.getMb_email());
+            return "main";
+        }
+        else return "redirect:/";
+    }
+
+    @GetMapping("/member/signout")
+    public String signout(HttpSession session) throws Exception{
+        log.info("SIGNOUT : GET");
+
+        memberService.signout(session);
+
+        return "home";
     }
 }
