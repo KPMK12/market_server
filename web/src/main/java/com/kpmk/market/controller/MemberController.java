@@ -72,6 +72,6 @@ public class MemberController {
 
         memberService.signout(session);
 
-        return "home";
+        return "redirect:/";
     }
 }
