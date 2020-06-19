@@ -9,6 +9,14 @@ group = 'com.kpmk'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+bootJar {
+
+	archiveBaseName = 'spring_boot'
+	archiveFileName = 'spring_boot.jar'
+	archiveVersion = "0.0.0"
+}
+
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -57,3 +65,4 @@ sourceSets {
 test {
 	useJUnitPlatform()
 }
+
