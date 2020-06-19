@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Service
@@ -20,6 +21,16 @@ public class MemberService {
     public Long signup(Member member){
         memberRepository.save(member);
         return member.getId();
+    }
+
+    public Member signin(String mb_email, String mb_pw){
+        Member member = memberRepository.findByUserId(mb_email);
+        if(member == null || !member.getMb_pw().equals(mb_pw)) return null;
+        return member;
+    }
+
+    public void signout(HttpSession session) throws Exception{
+        session.invalidate();
     }
 
     public Member findOne(Long memberId){
