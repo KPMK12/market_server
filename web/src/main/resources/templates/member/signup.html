@@ -31,23 +31,36 @@
 
         <div class="form-group">
             <label th:for="city">거주시</label>
-            <input type="text" th:field="*{city}" class="form-control" placeholder="예 : 서울시">
+            <select name="city" id="city" class="form-control">
+                <option value="">거주시 선택</option>
+                <option th:each="city : ${citys}" th:value="${city}" th:text="${city}"/>
+            </select>
         </div>
 
         <div class="form-group">
-            <label th:for="street">거주구</label>
-            <input type="text" th:field="*{gu}" class="form-control" placeholder="예) 강남구">
+            <label th:for="gu">거주구</label>
+            <select name="gu" id="gu" class="form-control">
+                <option value="">거주구 선택</option>
+                <option th:each="gu : ${gus}" th:value="${gu}" th:text="${gu}"/>
+            </select>
         </div>
 
         <div class="form-group">
-            <label th:for="zipcode">거주동</label>
-            <input type="text" th:field="*{dong}" class="form-control" placeholder="예) 삼성동">
+            <label th:for="dong">거주동</label>
+            <select name="dong" id="dong" class="form-control">
+                <option value="">거주동 선택</option>
+                <option th:each="dong : ${dongs}" th:value="${dong}" th:text="${dong}"/>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">회원가입 하기</button>
     </form>
     <br/>
     <div th:replace="fragments/footer :: footer"/>
 </div> <!-- /container -->
-
+<script>
+    $("#city option:checked").text()
+    $("#gu option:checked").text()
+    $("#dong option:checked").text()
+</script>
 </body>
 </html>

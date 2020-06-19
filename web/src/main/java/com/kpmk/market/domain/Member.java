@@ -16,6 +16,7 @@ public class Member {
     private String mb_pw;
     private String mb_name;
 
-    @Embedded
+    @ManyToOne
+    @JoinColumn(name = "location_id")
     private Location location;
 }
