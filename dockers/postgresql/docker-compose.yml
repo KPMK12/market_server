@@ -5,4 +5,10 @@ services:
     image: postgres:12.3
     restart: always
     environment:
-      POSTGRES_PASSWORD: km1234km
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - 9001:5432
