@@ -2,13 +2,13 @@ version: '3.1'
 
 services:
   db:
-    image: postgres
+    image: postgres:12.3
     restart: always
     environment:
-      POSTGRES_PASSWORD: km1234km
-
-  adminer:
-    image: adminer
-    restart: always
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - ./data:/var/lib/postgresql/data
     ports:
-      - 8080:8080
+      - 9001:5432
