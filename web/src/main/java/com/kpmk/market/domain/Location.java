@@ -1,23 +1,23 @@
 package com.kpmk.market.domain;
 
 import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.Embeddable;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@Embeddable
-@Getter
+@Entity
+@Getter @Setter
 public class Location {
 
-    private String city;
-    private String gu;
-    private String dong;
+    @Id @GeneratedValue
+    private Long id;
 
-    protected Location(){
-    }
+    private String city_name;
+    private String gu_name;
+    private String dong_name;
 
-    public Location(String city, String gu, String dong){
-        this.city = city;
-        this.gu = gu;
-        this.dong = dong;
-    }
+    @OneToMany(mappedBy = "location")
+    private List<Member> members = new ArrayList<Member>();
 }

@@ -3,6 +3,7 @@ package com.kpmk.market.controller;
 import com.kpmk.market.domain.Location;
 import com.kpmk.market.domain.Member;
 import com.kpmk.market.form.MemberForm;
+import com.kpmk.market.service.LocationService;
 import com.kpmk.market.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -20,12 +22,19 @@ import javax.servlet.http.HttpSession;
 public class MemberController {
 
     private final MemberService memberService;
+    private final LocationService locationService;
 
     @GetMapping("/member/signup")
     public String createForm(Model model){
         log.info("SIGNUP : GET");
+        List<String> citys = locationService.findAllCity();
+        List<String> gus = locationService.findAllGu();
+        List<String> dongs = locationService.findAllDong();
 
         model.addAttribute("memberForm", new MemberForm());
+        model.addAttribute("citys", citys);
+        model.addAttribute("gus", gus);
+        model.addAttribute("dongs", dongs);
         return "member/signup";
     }
 
@@ -33,8 +42,7 @@ public class MemberController {
     public String signup(MemberForm form){
         log.info("SIGNUP : POST");
 
-        Location location = new Location(form.getCity(), form.getGu(), form.getDong());
-
+        Location location = locationService.findByLocation(form.getCity(), form.getGu(), form.getDong());
         Member member = new Member();
         member.setMb_email(form.mb_email);
         member.setMb_pw(form.mb_pw);
