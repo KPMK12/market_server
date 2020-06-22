@@ -27,14 +27,8 @@ public class MemberController {
     @GetMapping("/member/signup")
     public String createForm(Model model){
         log.info("SIGNUP : GET");
-        List<String> citys = locationService.findAllCity();
-        List<String> gus = locationService.findAllGu();
-        List<String> dongs = locationService.findAllDong();
 
         model.addAttribute("memberForm", new MemberForm());
-        model.addAttribute("citys", citys);
-        model.addAttribute("gus", gus);
-        model.addAttribute("dongs", dongs);
         return "member/signup";
     }
 
@@ -42,12 +36,10 @@ public class MemberController {
     public String signup(MemberForm form){
         log.info("SIGNUP : POST");
 
-        Location location = locationService.findByLocation(form.getCity(), form.getGu(), form.getDong());
         Member member = new Member();
-        member.setMb_email(form.mb_email);
-        member.setMb_pw(form.mb_pw);
-        member.setMb_name(form.mb_name);
-        member.setLocation(location);
+        member.setEmail(form.email);
+        member.setPassword(form.password);
+        member.setName(form.name);
 
         memberService.signup(member);
         return "redirect:/";
@@ -56,6 +48,7 @@ public class MemberController {
     @GetMapping("/member/signin")
     public String signin_info(Model model){
         log.info("SIGNIN : GET");
+
         model.addAttribute("memberForm", new MemberForm());
         return "member/signin";
     }
@@ -63,12 +56,13 @@ public class MemberController {
     @PostMapping("/member/signin")
     public String signin(MemberForm form, Model model, HttpServletRequest request){
         log.info("SIGNIN : POST");
-        Member member = memberService.signin(form.getMb_email(), form.getMb_pw());
+
+        Member member = memberService.signin(form.getEmail(), form.getPassword());
         HttpSession session = request.getSession();
 
         if(member != null){
             model.addAttribute("member", member);
-            session.setAttribute("userid",member.getMb_email());
+            session.setAttribute("userid",member.getEmail());
             return "main";
         }
         else return "redirect:/";
@@ -79,7 +73,6 @@ public class MemberController {
         log.info("SIGNOUT : GET");
 
         memberService.signout(session);
-
         return "redirect:/";
     }
 }

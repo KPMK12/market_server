@@ -10,11 +10,11 @@ import javax.persistence.*;
 public class Member {
 
     @Id @GeneratedValue
-    @Column(name = "mb_id")
+    @Column(name = "member_id")
     private Long id;
-    private String mb_email;
-    private String mb_pw;
-    private String mb_name;
+    private String email;
+    private String password;
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "location_id")

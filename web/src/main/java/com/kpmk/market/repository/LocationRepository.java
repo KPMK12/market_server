@@ -23,7 +23,7 @@ public class LocationRepository {
         JPAQueryFactory queryFactory = new JPAQueryFactory(em);
         QLocation l = new QLocation("l");
 
-        Location location = queryFactory.select(l).from(l).where(l.city_name.eq(city),l.gu_name.eq(gu),l.dong_name.eq(dong)).fetchOne();
+        Location location = queryFactory.select(l).from(l).where(l.city.eq(city),l.gu.eq(gu),l.dong.eq(dong)).fetchOne();
         return location;
     }
 
@@ -31,7 +31,7 @@ public class LocationRepository {
         JPAQueryFactory queryFactory = new JPAQueryFactory(em);
         QLocation l = new QLocation("l");
 
-        List<String> citys = queryFactory.select(l.city_name).distinct().from(l).fetch();
+        List<String> citys = queryFactory.select(l.city).distinct().from(l).fetch();
         return citys;
     }
 
@@ -39,7 +39,7 @@ public class LocationRepository {
         JPAQueryFactory queryFactory = new JPAQueryFactory(em);
         QLocation l = new QLocation("l");
 
-        List<String> gus = queryFactory.select(l.gu_name).distinct().from(l).fetch();
+        List<String> gus = queryFactory.select(l.gu).distinct().from(l).fetch();
         return gus;
     }
 
@@ -47,7 +47,7 @@ public class LocationRepository {
         JPAQueryFactory queryFactory = new JPAQueryFactory(em);
         QLocation l = new QLocation("l");
 
-        List<String> dongs = queryFactory.select(l.dong_name).distinct().from(l).fetch();
+        List<String> dongs = queryFactory.select(l.dong).distinct().from(l).fetch();
         return dongs;
     }
 }

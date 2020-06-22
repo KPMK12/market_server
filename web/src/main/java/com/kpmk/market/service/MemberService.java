@@ -23,9 +23,9 @@ public class MemberService {
         return member.getId();
     }
 
-    public Member signin(String mb_email, String mb_pw){
-        Member member = memberRepository.findByUserId(mb_email);
-        if(member == null || !member.getMb_pw().equals(mb_pw)) return null;
+    public Member signin(String memberEmail, String memberPassword){
+        Member member = memberRepository.findByUserId(memberEmail);
+        if(member == null || !member.getPassword().equals(memberPassword)) return null;
         return member;
     }
 
