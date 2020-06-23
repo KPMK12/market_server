@@ -14,6 +14,7 @@
         <h1>CarrotMarket</h1>
         <p class="lead">로그인 성공 : Main TEST</p>
         <p>
+            <a th:if="${opcode == 1}" th:href="'javascript:setlocation()'">.</a>
             <a class="btn btn-lg btn-primary" href="/member/signout">로그아웃</a>
         </p>
     </div>
@@ -22,4 +23,10 @@
 
 </div>
 </body>
+<script type="text/javascript">
+    function setlocation(){
+        var msg = alert('지역정보가 설정되지 않아 설정으로 이동하겠습니다.');
+        location.href='/';
+    }
+</script>
 </html>

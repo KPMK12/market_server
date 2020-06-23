@@ -40,4 +40,12 @@ public class MemberService {
     public List<Member> findMembers(){
         return memberRepository.findAll();
     }
+
+    public Member findByUserId(String memberEmail){
+        return memberRepository.findByUserId(memberEmail);
+    }
+
+    public Long getMemberLocation(Long memberId){
+        return memberRepository.getMemberLocation(memberId);
+    }
 }
