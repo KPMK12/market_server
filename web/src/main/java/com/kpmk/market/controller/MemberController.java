@@ -70,8 +70,8 @@ public class MemberController {
                 session.setAttribute("userCity", member.getLocation().getCity());
                 session.setAttribute("userCity", member.getLocation().getGu());
                 session.setAttribute("userCity", member.getLocation().getDong());
-                return "main";
-            } else return "redirect:/member/setlocation";
+            } else model.addAttribute("opcode",1);
+            return "main";
         }
         else return "redirect:/";
     }
