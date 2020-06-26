@@ -21,8 +21,8 @@ public class MemberRepository {
         return em.find(Member.class, id);
     }
 
-    public Member findByUserId(String mb_email){
-        return em.createQuery("select m from Member m where m.mb_email = :mb_email", Member.class).setParameter("mb_email", mb_email).getSingleResult();
+    public Member findByUserId(String memberEmail){
+        return em.createQuery("select m from Member m where m.email = :memberEmail", Member.class).setParameter("memberEmail", memberEmail).getSingleResult();
     }
 
     public List<Member> findAll(){

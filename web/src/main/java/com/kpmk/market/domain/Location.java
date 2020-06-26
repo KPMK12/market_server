@@ -12,11 +12,12 @@ import java.util.List;
 public class Location {
 
     @Id @GeneratedValue
+    @Column(name = "location_id")
     private Long id;
 
-    private String city_name;
-    private String gu_name;
-    private String dong_name;
+    private String city;
+    private String gu;
+    private String dong;
 
     @OneToMany(mappedBy = "location")
     private List<Member> members = new ArrayList<Member>();
