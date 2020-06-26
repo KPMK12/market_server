@@ -21,10 +21,13 @@ public class BoardService {
     }
 
     public BoardDo save(BoardDo boardDo) {
+        try {
+            return this.boardDao.save(boardDo);
 
-        return this.boardDao.save(boardDo);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
     }
-
 
     public BoardDo getBoard(Long board_id)  {
         try {
