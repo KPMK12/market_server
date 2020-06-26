@@ -4,8 +4,6 @@ import com.example.api.board.repository.BoardDo;
 import com.example.api.board.repository.BoardResult;
 import com.example.api.board.repository.BoardService;
 import com.example.api.response.Response;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -15,9 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 @RestController
@@ -36,7 +31,6 @@ public class BoardController {
         if (boardDo == null) {
             return ResponseEntity.notFound().build();
         }
-
         Response r = new Response(new BoardResult(boardDo));
         return new ResponseEntity<>(r, HttpStatus.OK);
     }
@@ -51,5 +45,4 @@ public class BoardController {
         Response r = new Response(new BoardResult(boardDo));
         return new ResponseEntity<>(r, HttpStatus.OK);
     }
-
 }
