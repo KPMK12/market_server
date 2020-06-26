@@ -1,0 +1,17 @@
+### home
+GET http://{{api-host}}:{{api-port}}/api/v1/board/1
+
+###
+GET http://{{api-host}}:{{api-port}}/v1/board
+
+###
+POST http://{{api-host}}:{{api-port}}/api/v1/board
+Content-Type: application/json
+
+{
+  "title": "test",
+  "content": "test"
+
+}
+
+###
