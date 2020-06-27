@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.0.1">
+    <title>SetLocation</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="/css/setlocation.css" rel="stylesheet">
+</head>
+<body class="text-center">
+<form class="form-setlocation" role="form" action="/member/setlocation" th:object="${locationForm}" method="post">
+    <img class="mb-4" src="/img/icon.png" alt="" width="100" height="100">
+    <h1 class="h3 mb-3 font-weight-normal">Please Set Location</h1>
+
+    <div class="form-group">
+        <label th:for="city">거주시</label>
+        <select type="city" name="city" id="city" class="form-control">
+            <option value="">거주시 선택</option>
+            <option th:each="city : ${citys}" th:value="${city}" th:text="${city}"/>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label th:for="gu">거주구</label>
+        <select type="gu" name="gu" id="gu" class="form-control">
+            <option value="">거주구 선택</option>
+            <option th:each="gu : ${gus}" th:value="${gu}" th:text="${gu}"/>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label th:for="dong">거주동</label>
+        <select type="dong" name="dong" id="dong" class="form-control">
+            <option value="">거주동 선택</option>
+            <option th:each="dong : ${dongs}" th:value="${dong}" th:text="${dong}"/>
+        </select>
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">SET LOCATION</button>
+    <p class="mt-5 mb-3 text-muted">&copy; KPMK12</p>
+</form>
+<script>
+    $("#city option:checked").text()
+    $("#gu option:checked").text()
+    $("#dong option:checked").text()
+</script>
+</body>
+</html>

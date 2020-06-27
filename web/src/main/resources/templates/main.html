@@ -14,6 +14,10 @@
         <h1>CarrotMarket</h1>
         <p class="lead">로그인 성공 : Main TEST</p>
         <p>
+            <script th:if="${opcode == 1}">
+                alert('지역정보가 설정되지 않아 설정으로 이동하겠습니다.');
+                location.href='/member/setlocation';
+            </script>
             <a class="btn btn-lg btn-primary" href="/member/signout">로그아웃</a>
         </p>
     </div>

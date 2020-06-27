@@ -28,4 +28,9 @@ public class MemberRepository {
     public List<Member> findAll(){
         return em.createQuery("select m from Member m", Member.class).getResultList();
     }
+
+    public Long getMemberLocation(Long MemberId){
+        Member member = em.find(Member.class, MemberId);
+        return member.getLocation().getId();
+    }
 }
