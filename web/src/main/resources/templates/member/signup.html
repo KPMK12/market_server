@@ -31,7 +31,7 @@
     <link href="/css/signup.css" rel="stylesheet">
 </head>
 <body class="text-center">
-<form class="form-signup" role="form" action="/member/signup" th:object="${memberForm}" method="post">
+<form class="form-signup" role="form" th:action="@{/member/signup}" th:object="${memberForm}" th:method="post">
     <img class="mb-4" src="/img/icon.png" alt="" width="100" height="100">
     <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
 

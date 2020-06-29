@@ -1,8 +1,6 @@
 package com.kpmk.market.repository;
 
 import com.kpmk.market.domain.Location;
-import com.kpmk.market.domain.QLocation;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -20,34 +18,22 @@ public class LocationRepository {
     }
 
     public Location findByLocation(String city, String gu, String dong){
-        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
-        QLocation l = new QLocation("l");
-
-        Location location = queryFactory.select(l).from(l).where(l.city.eq(city),l.gu.eq(gu),l.dong.eq(dong)).fetchOne();
-        return location;
+        return em.createQuery("select l from Location l where l.city = :city and l.gu = :gu and l.dong = :dong", Location.class)
+                .setParameter("city",city)
+                .setParameter("gu",gu)
+                .setParameter("dong",dong)
+                .getSingleResult();
     }
 
     public List<String> findAllCity(){
-        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
-        QLocation l = new QLocation("l");
-
-        List<String> citys = queryFactory.select(l.city).distinct().from(l).fetch();
-        return citys;
+        return em.createQuery("select distinct l.city from Location l", String.class).getResultList();
     }
 
     public List<String> findAllGu(){
-        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
-        QLocation l = new QLocation("l");
-
-        List<String> gus = queryFactory.select(l.gu).distinct().from(l).fetch();
-        return gus;
+        return em.createQuery("select distinct l.gu from Location l", String.class).getResultList();
     }
 
     public List<String> findAllDong(){
-        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
-        QLocation l = new QLocation("l");
-
-        List<String> dongs = queryFactory.select(l.dong).distinct().from(l).fetch();
-        return dongs;
+        return em.createQuery("select distinct l.dong from Location l", String.class).getResultList();
     }
 }
