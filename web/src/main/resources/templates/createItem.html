@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Item Registration</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="/css/createItem.css" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+      <div class="container">
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="/img/icon.png" alt="" width="100" height="100">
+      <h2>Item Registration</h2>
+      <p class="lead">Please notice Carrot Market never allow drug selling, weapon trade, prostitution. Any item related with it will be delete by Market Manager. Carrot Market is building clean market and wish all user can join us.</p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 order-md-1">
+        <h4 class="mb-4">Item Information</h4>
+
+        <form class="needs-validation" role="form" th:action="@{/item}" th:object="${itemForm}" th:method="post" novalidate enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="title">Title</label>
+            <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="Ex. Spring Boot in 7 days (Published by KPMK12)">
+            <div class="invalid-feedback">
+              Please enter a valid email address for shipping updates.
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="price">Price</label>
+              <input type="number" th:field="*{price}" class="form-control" id="price" placeholder="35$" required>
+              <div class="invalid-feedback">
+                Please enter price for selling.
+              </div>
+            </div>
+
+            <div class="col-md-5 mb-3">
+              <label for="category">Category</label>
+              <select class="custom-select d-block w-80" id="category" required>
+                <option value="">Choose...</option>
+                <option>United States</option>
+              </select>
+              <div class="invalid-feedback">
+                Please select a category which match with your item.
+              </div>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" th:field="*{priceOffer}" class="custom-control-input" id="priceadv">
+              <label class="custom-control-label" for="priceadv">Price Adv.</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="itemdescribe">Item description</label>
+            <textarea th:field="*{description}" class="form-control" id="itemdescribe" rows="10"></textarea>
+            <div class="invalid-feedback">
+              Please describe your item.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="itemimg">Item image upload</label>
+            <input th:multiple="multiple" type="file" id="itemimg" name="itemimg">
+          </div>
+
+          <hr class="mb-4">
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Post my item</button>
+        </form>
+      </div>
+    </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; KPMK12</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Privacy</a></li>
+        <li class="list-inline-item"><a href="#">Terms</a></li>
+        <li class="list-inline-item"><a href="#">Support</a></li>
+      </ul>
+    </footer>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"><\/script>')</script>
+      <script src="/js/bootstrap.bundle.js"></script>
+      <script src="/js/createItem.js"></script>
+  </body>
+</html>
